@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net11.0-ios</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <SupportedOSPlatformVersion>17.6</SupportedOSPlatformVersion>
+
+    <!-- The RC2 iOS SDK requires exactly Xcode 27.0. Remove this if that's what you have installed. -->
+    <ValidateXcodeVersion>false</ValidateXcodeVersion>
+
+    <!-- Uncomment to confirm the workaround (precompile the "user" assemblies in Debug too). -->
+    <!-- <FilterReadyToRunAssemblies>false</FilterReadyToRunAssemblies> -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- From a NuGet package (built into ../local-feed), so the SDK treats it as a non-user assembly and
+         ReadyToRun-compiles it even in Debug. Referencing it as a project would not reproduce the crash. -->
+    <PackageReference Include="RangedTypes" Version="1.0.0" />
+  </ItemGroup>
+</Project>
